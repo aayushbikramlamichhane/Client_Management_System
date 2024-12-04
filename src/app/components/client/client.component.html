@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">
+        Client List
+      </div>
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Company Name</th>
+                  <th>Person Name</th>
+                  <th>Contact No</th>
+                  <th>City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of clientList; track $index) {
+                  <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{item.companyName}}</td>
+                    <td>{{item.contactPersonName}}</td>
+                    <td>{{item.contactNo}}</td>
+                    <td>{{item.city}}</td>
+                    <td>
+                      <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                      <button class="btn btn-danger" (click)="onDelete(item.clientId)">Delete</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">
+        New Client
+      </div>
+      <div class="card-body">
+        <form #form = "ngForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">Person Name</label>
+              <input type="text" #personName = "ngModel" minlength="5" required class="form-control" name="" name="contactPersonName" [(ngModel)]="clientObj.contactPersonName">
+              @if (personName.touched) {
+                <div class="text-danger">
+                  @if (personName?.errors?.["required"]) {
+                    <span>This is required</span>
+                  }
+                  @if (personName?.errors?.['minlength']) {
+                    <span>Minimum 5 characters are required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Company Name</label>
+              <input type="text" class="form-control" name="companyName" [(ngModel)]="clientObj.companyName">
+            </div>
+            <div class="col-6">
+              <label for="">Contact No</label>
+              <input type="text" class="form-control" name="contactNo" [(ngModel)]="clientObj.contactNo">
+            </div>
+            <div class="col-6">
+              <label for="">City</label>
+              <input type="text" class="form-control" name="city" [(ngModel)]="clientObj.city">
+            </div>
+
+            <div class="col-6">
+              <label for="">Address</label>
+              <textarea class="form-control" name="address" [(ngModel)]="clientObj.address"></textarea>
+            </div>
+            <div class="col-6">
+              <label for="">Pin code</label>
+              <input type="text" class="form-control" name="state" [(ngModel)]="clientObj.state">
+            </div>
+            <div class="col-6">
+              <label for="">Employee btn</label>
+              <input type="text" class="form-control" name="employeeStrength" [(ngModel)]="clientObj.employeeStrength">
+            </div>
+            <div class="col-6">
+              <label for="">Gst No</label>
+              <input type="text" class="form-control" name="gstNo" [(ngModel)]="clientObj.gstNo">
+            </div>
+            <div class="col-6">
+              <label for="">Reg No</label>
+              <input type="text" class="form-control" name="regNo" [(ngModel)]="clientObj.regNo">
+            </div>
+
+          </div>
+          <div class="row mt-1">
+            <div class="col-6 pt2">
+              <button class="btn btn-success" [disabled]="!form.valid" (click)="onSave()">
+                {{clientObj.clientId != 0 ? 'Update':'Save'}}
+              </button>
+            </div>
+            <div class="col-6 text-center">
+              <button class="btn btn-danger">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
