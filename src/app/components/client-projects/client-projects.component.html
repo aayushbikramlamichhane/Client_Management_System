@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">
+        Client List
+      </div>
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Company Name</th>
+                  <th>Person Name</th>
+                  <th>Contact No</th>
+                  <th>City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- @for (item of clientList; track $index) {
+                  <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{item.companyName}}</td>
+                    <td>{{item.contactPersonName}}</td>
+                    <td>{{item.contactNo}}</td>
+                    <td>{{item.city}}</td>
+                    <td>
+                      <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                      <button class="btn btn-danger" (click)="onDelete(item.clientId)">Delete</button>
+                    </td>
+                  </tr>
+                } -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">
+        New Client
+      </div>
+      <div class="card-body">
+        <form [formGroup]="projectForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">Project Name</label>
+              <input type="text" formControlName="projectName"  formControlName="projectName"  class="form-control" >
+            </div>
+            <div class="col-6">
+              <label for="">Start date</label>
+              <input type="date" formControlName="startDate"  class="form-control"  >
+            </div>
+            <div class="col-6">
+              <label for="">Expected End Date</label>
+              <input type="date" formControlName="expectedDateEnd"  class="form-control"  >
+            </div>
+            <div class="col-6">
+              <label for="">Contact Name</label>
+              <input type="text" formControlName="contactPerson"  class="form-control"  >
+            </div>
+
+            <div class="col-6">
+              <label for="">Contact Mobile</label>
+              <input formControlName="contactPersonContactNo"  class="form-control" >
+            </div>
+            <div class="col-6">
+              <label for="">Contact Email</label>
+              <input type="text" formControlName="contactPersonEmailId"  class="form-control">
+            </div>
+            <div class="col-6">
+              <label for="">Total Employee Count</label>
+              <input type="text" formControlName="totalWorking"  class="form-control" >
+            </div>
+            <div class="col-6">
+              <label for="">Project Costing</label>
+              <input type="text" formControlName="projectCost"  class="form-control" name="gstNo" >
+            </div>
+            <div class="col-12">
+              <label for="">Project Description</label>
+              <textarea type="text" formControlName="projectDetails"  class="form-control"></textarea>
+            </div>
+            <div class="col-6">
+              <label for="">Select Client</label>
+              <select formControlName="clientId" class="form-control">
+                <option value="">Select Client</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Lead By</label>
+              <select formControlName="leadByEmpId" class="form-control">
+                <option value="">Select Employee</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-6 pt2">
+              <button class="btn btn-success" >Save
+                <!-- {{clientObj.clientId != 0 ? 'Update':'Save'}} -->
+              </button>
+            </div>
+            <div class="col-6 text-center">
+              <button class="btn btn-danger">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
