@@ -51,6 +51,18 @@
             <div class="col-6">
               <label for="">Project Name</label>
               <input type="text" formControlName="projectName"  formControlName="projectName"  class="form-control" >
+              @if (projectForm.controls['projectName'].touched) {
+                <div class="text-danger">
+                  @if (projectForm.controls['projectName'].errors?.['required']) {
+                    <span>This is required.</span>
+                  }
+                  @if (projectForm.controls['projectName'].errors?.['minlength']) {
+                    <span>Min 4 character</span>
+                  }
+
+                </div>
+              }
+
             </div>
             <div class="col-6">
               <label for="">Start date</label>
@@ -89,19 +101,25 @@
               <label for="">Select Client</label>
               <select formControlName="clientId" class="form-control">
                 <option value="">Select Client</option>
+                @for (item of clientList; track $index) {
+                  <option [value]="item.clientId">{{item.companyName}}</option>
+                }
               </select>
             </div>
             <div class="col-6">
               <label for="">Lead By</label>
               <select formControlName="leadByEmpId" class="form-control">
                 <option value="">Select Employee</option>
+                @for (item of employeeList; track $index) {
+                  <option [value]="item.empId">{{item.empName}} - {{item.empCode}}</option>
+                }
               </select>
             </div>
           </div>
           <div class="row mt-1">
             <div class="col-6 pt2">
-              <button class="btn btn-success" >Save
-                <!-- {{clientObj.clientId != 0 ? 'Update':'Save'}} -->
+              <button class="btn btn-success" (click)="onSave()" [disabled]="projectForm.invalid">
+                Save
               </button>
             </div>
             <div class="col-6 text-center">
