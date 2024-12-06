@@ -5,6 +5,7 @@ import { ClientService } from '../../services/client.service';
 import { APIResponseModel } from '../../model/interface/role';
 import { AsyncPipe, DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Constant } from '../../constant/Constant';
 
 @Component({
   selector: 'app-client',
@@ -17,7 +18,6 @@ export class ClientComponent implements OnInit{
   clientObj: Client = new Client();
   clientList : Client[] = [];
   clientService = inject(ClientService);
-
   userList$: Observable<any> = new Observable<any>;
   ngOnInit(): void {
     this.loadClient();
