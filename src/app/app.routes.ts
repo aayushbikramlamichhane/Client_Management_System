@@ -1,29 +1,39 @@
-import { Routes } from '@angular/router';
+import { Routes, CanActivateFn } from '@angular/router';
 import { MasterComponent } from './components/master/master.component';
-import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientProjectsComponent } from './components/client-projects/client-projects.component';
+import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'master',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'master',
-    component: MasterComponent
+    path:'login',
+    component: LoginComponent
   },
   {
-    path: 'employee',
-    component: EmployeeComponent
-  },
-  {
-    path: 'client',
-    component: ClientComponent
-  },
-  {
-    path: 'client-project',
-    component: ClientProjectsComponent
+    path: '',
+    component: LayoutComponent,
+    canActivate: [authGuard],
+    children:[
+      {
+        path: 'master',
+        component: MasterComponent
+      },
+      {
+        path: 'client',
+        component: ClientComponent,
+      },
+      {
+        path: 'client-project',
+        component: ClientProjectsComponent
+      }
+    ]
   }
+
 ];
