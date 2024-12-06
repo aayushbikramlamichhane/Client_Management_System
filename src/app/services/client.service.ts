@@ -12,6 +12,10 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
+  getAllUser(){
+    return this.http.get("https://jsonplaceholder.typicode.com/users")
+  }
+
   getAllClient():Observable<APIResponseModel>{
     return this.http.get<APIResponseModel>(environment.API_URL + "GetAllClients")
   }
